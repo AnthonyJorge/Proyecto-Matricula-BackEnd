@@ -23,6 +23,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 @Entity
 @Table(name="curso")
 public class Curso {
@@ -33,8 +34,7 @@ public class Curso {
 	private String nombre;
 	
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date fechaRegistro;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })

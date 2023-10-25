@@ -49,4 +49,6 @@ public class Alumno {
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name ="idSexo")
 	private Sexo sexo;
+
+
 }

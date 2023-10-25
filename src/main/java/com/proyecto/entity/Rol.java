@@ -5,20 +5,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 import lombok.Getter;
 import lombok.Setter;
-
+import lombok.ToString;
 
 @Getter
 @Setter
-
 @Entity
-@Table(name="grado")
-public class Grado {
-	
+@ToString
+@Table(name = "rol")
+public class Rol {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idGrado;
+	private int idRol;
 	private String nombre;
-	
+
 }
