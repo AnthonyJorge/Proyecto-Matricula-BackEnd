@@ -32,8 +32,9 @@ public class Docente {
 	private String nombre;
 	private String apellidoPa;
 	private String apellidoMa;
-	private int telefono;
-	private int dni;
+	private String telefono;
+	private String edad;
+	private String dni;
 	private String correo;
 	
 	

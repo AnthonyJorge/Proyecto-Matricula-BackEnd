@@ -8,7 +8,7 @@ public interface cursoService {
 	
 	public abstract Curso agregarCurso(Curso curso);
 
-	public abstract Curso ActualizarCurso(Curso curso);
+	public abstract Curso actualizarCurso(Curso curso);
 		
 	public abstract List<Curso> listaCursoPorNombre(String nombre);
 	

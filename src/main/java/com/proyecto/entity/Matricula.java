@@ -44,4 +44,9 @@ public class Matricula {
 	@JoinColumn(name ="idAlumno")
 	private Alumno alumno;
 	
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name ="idTurno")
+	private Turno turno;
+	
 }

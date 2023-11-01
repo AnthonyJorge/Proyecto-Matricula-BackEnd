@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,97 +18,71 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyecto.entity.Curso;
-import com.proyecto.service.cursoService;
+import com.proyecto.entity.Matricula;
+import com.proyecto.service.matriculaService;
 import com.proyecto.utils.Mensajes;
+import com.proyecto.utils.Utils;
 
 @RestController
-@RequestMapping("/url/crudCurso")
-@CrossOrigin(origins = "http://localhost:4200")
-public class cursoController {
-
+@RequestMapping("/url/crudMatricula")
+@CrossOrigin(originPatterns = "http://localhost:4200")
+public class matriculaController {
 	@Autowired
-	private cursoService cuService;
-
-	@GetMapping("/listarCursoPorNombre/{nom}")
-	@ResponseBody
-	public ResponseEntity<List<Curso>> listaCursoPorNombre(@PathVariable("nom") String nom) {
-		List<Curso> lista = null;
-		try {
-			if (nom.equals("todos")) {
-				lista = cuService.listaCursoPorNombre("%");
-			} else {
-				lista = cuService.listaCursoPorNombre("%" + nom + "%");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(lista);
-	}
-	
+	private matriculaService maService;
 
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Curso>> listarCursos(){
-		List<Curso> listado = cuService.listarTodos();
+	public ResponseEntity<List<Matricula>> listarDocente() {
+		List<Matricula> listado = maService.listarTodo();
 		return ResponseEntity.ok(listado);
 	}
 
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<?> insertarCurso(@RequestBody Curso obj) {
+	public ResponseEntity<?> insertarDocente(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
+	
 
-		
 		obj.setFechaRegistro(new Date());
 
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
-		} else {
-			Curso objSalida = cuService.agregarCurso(obj);
+			Matricula objSalida = maService.agregarMatricula(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
 
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_EXITOSO);
 			}
-		}
+	
 
 		return ResponseEntity.ok(salida);
 	}
 
-	@PutMapping("/actualizarCurso")
+	@PutMapping("/actualizarMatricula")
 	@ResponseBody
-	public ResponseEntity<?> actualizarCurso(@RequestBody Curso obj) {
+	public ResponseEntity<?> actualizarMatricula(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
+	
 
 		obj.setFechaRegistro(new Date());
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
-		} else {
-
-			Curso objSlida = cuService.actualizarCurso(obj);
+		
+			Matricula objSlida = maService.actualizarMatricula(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_EXITOSO);
 			}
-		}
+
 		return ResponseEntity.ok(salida);
 
 	}
 
-	@DeleteMapping("/eliminarCurso/{id}")
+	@DeleteMapping("/eliminarMatricula/{id}")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> eliminarCurso(@PathVariable("id") int idCuros) {
+	public ResponseEntity<Map<String, Object>> eliminarMatricula(@PathVariable("id") int idAlumno) {
 		Map<String, Object> salida = new HashMap<>();
 
 		try {
-			cuService.eliminarDocente(idCuros);
+			maService.eliminarMatricula(idAlumno);
 			salida.put("mensaje", Mensajes.MENSAJE_ELI_EXITOSO);
 
 		} catch (Exception e) {

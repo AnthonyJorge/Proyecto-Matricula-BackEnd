@@ -29,7 +29,7 @@ public class cursoServicelmp implements cursoService{
 	}
 
 	@Override
-	public Curso ActualizarCurso(Curso curso) {
+	public Curso actualizarCurso(Curso curso) {
 		return rpy.save(curso);
 	}
 

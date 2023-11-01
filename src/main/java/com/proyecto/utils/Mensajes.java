@@ -19,5 +19,4 @@ public class Mensajes {
 	/*MENSAJES VALIDACION*/
 	
 	public static final String MENSAJE_CURSONOMBRE_EXISTE = "El nombre del curso ya existe";
-
 }

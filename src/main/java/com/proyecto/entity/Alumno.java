@@ -32,8 +32,8 @@ public class Alumno {
 	private String nombre;
 	private String apellidoPa;
 	private String apellidoMa;
-	private int edad;
-	private int dni;
+	private String edad;
+	private String dni;
 	
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,56 +18,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyecto.entity.Curso;
-import com.proyecto.service.cursoService;
+import com.proyecto.entity.Docente;
+import com.proyecto.service.docenteService;
 import com.proyecto.utils.Mensajes;
+import com.proyecto.utils.Utils;
 
 @RestController
-@RequestMapping("/url/crudCurso")
-@CrossOrigin(origins = "http://localhost:4200")
-public class cursoController {
+@RequestMapping("/url/crudDocente")
+@CrossOrigin(originPatterns ="http://localhost:4200")
+public class docenteController {
 
 	@Autowired
-	private cursoService cuService;
+	private docenteService doService;
 
-	@GetMapping("/listarCursoPorNombre/{nom}")
+	@GetMapping("listarDocentePorNombre/{nom}")
 	@ResponseBody
-	public ResponseEntity<List<Curso>> listaCursoPorNombre(@PathVariable("nom") String nom) {
-		List<Curso> lista = null;
+	public ResponseEntity<List<Docente>> listaDocentePorNombre(@PathVariable("nom") String nom) {
+		List<Docente> lista = null;
 		try {
 			if (nom.equals("todos")) {
-				lista = cuService.listaCursoPorNombre("%");
+				lista = doService.listarDocentePorNombre("%");
 			} else {
-				lista = cuService.listaCursoPorNombre("%" + nom + "%");
+				lista = doService.listarDocentePorNombre("%" + nom + "%");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ResponseEntity.ok(lista);
 	}
-	
 
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Curso>> listarCursos(){
-		List<Curso> listado = cuService.listarTodos();
+	public ResponseEntity<List<Docente>> listarDocente() {
+		List<Docente> listado = doService.listarTodos();
 		return ResponseEntity.ok(listado);
 	}
 
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<?> insertarCurso(@RequestBody Curso obj) {
+	public ResponseEntity<?> insertarDocente(@RequestBody Docente obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
+		List<Docente> validarDocente = doService.listarTodos();
 
-		
 		obj.setFechaRegistro(new Date());
 
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
+		if (validarDocente.stream().anyMatch(a -> a.getDni().equals(obj.getDni()))) {
+			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
 		} else {
-			Curso objSalida = cuService.agregarCurso(obj);
+			Docente objSalida = doService.agregarDocente(obj);
 			if (objSalida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_REG_ERROR);
 
@@ -78,19 +77,19 @@ public class cursoController {
 		return ResponseEntity.ok(salida);
 	}
 
-	@PutMapping("/actualizarCurso")
+	@PutMapping("/actualizarDocente")
 	@ResponseBody
-	public ResponseEntity<?> actualizarCurso(@RequestBody Curso obj) {
+	public ResponseEntity<?> actualizarDocente(@RequestBody Docente obj) {
 		HashMap<String, Object> salida = new HashMap<>();
-		List<Curso> validarCurso = cuService.listarTodos();
+		List<Docente> validarDocente = doService.listarTodos();
 
 		obj.setFechaRegistro(new Date());
-		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
-			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
+		if (validarDocente.stream()
+				.anyMatch(c -> c.getDni().equals(obj.getDni()) && c.getIdDocente() != obj.getIdDocente())) {
+			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
 		} else {
 
-			Curso objSlida = cuService.actualizarCurso(obj);
+			Docente objSlida = doService.actualizarDocentes(obj);
 			if (objSlida == null) {
 				salida.put("mensaje", Mensajes.MENSAJE_ACT_ERROR);
 			} else {
@@ -101,13 +100,13 @@ public class cursoController {
 
 	}
 
-	@DeleteMapping("/eliminarCurso/{id}")
+	@DeleteMapping("/eliminarDocente/{id}")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> eliminarCurso(@PathVariable("id") int idCuros) {
+	public ResponseEntity<Map<String, Object>> eliminarDocente(@PathVariable("id") int idDocente) {
 		Map<String, Object> salida = new HashMap<>();
 
 		try {
-			cuService.eliminarDocente(idCuros);
+			doService.eliminarDocente(idDocente);
 			salida.put("mensaje", Mensajes.MENSAJE_ELI_EXITOSO);
 
 		} catch (Exception e) {
