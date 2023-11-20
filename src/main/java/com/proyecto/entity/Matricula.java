@@ -28,6 +28,7 @@ public class Matricula {
 	private double precio;
 	private double descuento;
 	private double precioTotal;
+	private String tipoPago;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch =  FetchType.LAZY)
@@ -48,5 +49,10 @@ public class Matricula {
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name ="idTurno")
 	private Turno turno;
+	
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name ="idTipoPago")
+	private TipoPago tipopago;
 	
 }

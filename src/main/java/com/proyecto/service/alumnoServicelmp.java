@@ -13,6 +13,7 @@ public class alumnoServicelmp implements alumnoService{
 
 	@Autowired
 	private alumnoRepository rpy;
+	
 	@Override
 	public Alumno agregarAlumno(Alumno alumno) {
 		return rpy.save(alumno);
@@ -24,11 +25,6 @@ public class alumnoServicelmp implements alumnoService{
 	}
 
 	@Override
-	public List<Alumno> listarAlumnoPorNombre(String nombre) {
-		return rpy.listaPorNombre(nombre);
-	}
-
-	@Override
 	public void eliminarAlumno(int idAlumno) {
 		rpy.deleteById(idAlumno);
 	}
@@ -37,6 +33,14 @@ public class alumnoServicelmp implements alumnoService{
 	public List<Alumno> listarTodos() {
 		return rpy.findAll();
 	}
+
+	@Override
+	public List<Alumno> ConsultaAlumno(String nombre, String apellidoPa, String dni, int idSexo) {
+		return rpy.consultaDinamica(nombre, apellidoPa, dni, idSexo);
+	}
+
+
+
 	
 
 }

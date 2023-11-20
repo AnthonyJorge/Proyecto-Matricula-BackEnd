@@ -9,7 +9,11 @@ import com.proyecto.entity.Alumno;
 
 public interface alumnoRepository extends JpaRepository<Alumno, Integer> {
 
-	@Query("select x from Alumno x where x.nombre like ?1")
-	public List<Alumno> listaPorNombre(String nombre);
+	@Query("select x from Alumno x where x.nombre like %?1% and "
+			+ "x.apellidoPa like %?2% and "
+			+ "x.dni like %?3% and "
+			+ "(?4 = -1 or sexo.idSexo = ?4)")
+	public List<Alumno> consultaDinamica(String nombre, String apellidoPa,String dni, int idSexo);
+	
 	
 }

@@ -14,6 +14,8 @@ public interface matriculaService {
 	
 	public abstract List<Matricula> listarTodo();
 	
+	//consultas
+	
 
 
 }

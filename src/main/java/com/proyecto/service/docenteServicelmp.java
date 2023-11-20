@@ -25,11 +25,6 @@ public class docenteServicelmp implements docenteService{
 	}
 
 	@Override
-	public List<Docente> listarDocentePorNombre(String nombre) {
-		return rpy.listaPorNombre(nombre);
-	}
-
-	@Override
 	public void eliminarDocente(int idDocente) {
 		rpy.deleteById(idDocente);
 	}
@@ -38,6 +33,13 @@ public class docenteServicelmp implements docenteService{
 	public List<Docente> listarTodos() {
 		return rpy.findAll();
 	}
+
+	@Override
+	public List<Docente> consultaDocente(String nombre, String apellidoPa, String dni, int idSexo, int idCurso) {
+		return rpy.consultaDinamica(nombre, apellidoPa, dni, idSexo, idCurso);
+	}
+
+	
 	
 	
 	

@@ -11,7 +11,7 @@ public class DecoderPassword {
 		String encodedPassword = "$2a$10$zkMHOYQF9IK1q4t76oI9N.zEz3O78ivuHYCif9mkuE/1yh4.me9bS";
 		
 		boolean isPasswordMatch = passwordEncoder.matches(password, encodedPassword);
-		System.out.println("Password : " + password + "   isPasswordMatch    : " + isPasswordMatch);
+		System.out.println("Password : " + password + "   Password Correcta?    : " + isPasswordMatch);
 		
 	}
 }

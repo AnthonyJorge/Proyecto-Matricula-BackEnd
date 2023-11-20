@@ -32,14 +32,14 @@ public class matriculaController {
 
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Matricula>> listarDocente() {
+	public ResponseEntity<List<Matricula>> listarMatricula() {
 		List<Matricula> listado = maService.listarTodo();
 		return ResponseEntity.ok(listado);
 	}
 
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<?> insertarDocente(@RequestBody Matricula obj) {
+	public ResponseEntity<?> insertarMatricula(@RequestBody Matricula obj) {
 		HashMap<String, Object> salida = new HashMap<>();
 	
 

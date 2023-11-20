@@ -34,4 +34,5 @@ public class matriculaServicelmp implements matriculaService {
 		return rpy.findAll();
 	}
 
+
 }

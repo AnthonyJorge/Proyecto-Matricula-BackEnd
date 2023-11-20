@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyecto.entity.Alumno;
 import com.proyecto.service.alumnoService;
 import com.proyecto.utils.Mensajes;
-import com.proyecto.utils.Utils;
 
 @RestController
 @RequestMapping("/url/crudAlumno")
@@ -31,23 +30,6 @@ public class alumnoController {
 
 	@Autowired
 	private alumnoService alService;
-
-	@GetMapping("/listarAlumnoPorNombre/{nom}")
-	@ResponseBody
-	public ResponseEntity<List<Alumno>> listaAlumnoPorNombre(@PathVariable("nom") String nom) {
-		List<Alumno> lista = null;
-		try {
-			if (nom.equals("todos")) {
-				lista = alService.listarAlumnoPorNombre("%");
-			} else {
-				lista = alService.listarAlumnoPorNombre("%" + nom + "%");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ResponseEntity.ok(lista);
-	}
-	
 
 	@GetMapping
 	@ResponseBody

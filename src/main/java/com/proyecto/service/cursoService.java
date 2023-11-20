@@ -10,10 +10,11 @@ public interface cursoService {
 
 	public abstract Curso actualizarCurso(Curso curso);
 		
-	public abstract List<Curso> listaCursoPorNombre(String nombre);
-	
 	public abstract void eliminarDocente(int idCurso);
 
 	public abstract List<Curso> listarTodos();
-
+	
+	//consultar
+	
+	public abstract  List<Curso> consultaCurso(String nombre, int idGrado);
 }
