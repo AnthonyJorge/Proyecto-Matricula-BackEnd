@@ -15,8 +15,9 @@ public class Mensajes {
 	public static final String MENSAJE_ELI_NO_EXISTE_ID = "No existe el ID que se desea eliminar.";
 	
 	public static final String MENSAJE_DNI_YA_EXISTE = "Ya existe dicho el DNI : ";
+	public static final String MENSAJE_TELEFONO_YA_EXISTE = "Ya existe dico Telefono  : ";
 
 	/*MENSAJES VALIDACION*/
 	
-	public static final String MENSAJE_CURSONOMBRE_EXISTE = "El nombre del curso ya existe";
+	public static final String MENSAJE_CURSONOMBRE_EXISTE = "No se puede repetir el nombre del curso es un mismo grado";
 }

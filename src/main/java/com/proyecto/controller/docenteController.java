@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyecto.entity.Docente;
 import com.proyecto.service.docenteService;
 import com.proyecto.utils.Mensajes;
-import com.proyecto.utils.Utils;
+
 
 @RestController
 @RequestMapping("/url/crudDocente")
@@ -48,7 +48,10 @@ public class docenteController {
 
 		obj.setFechaRegistro(new Date());
 
-		if (validarDocente.stream().anyMatch(a -> a.getDni().equals(obj.getDni()))) {
+		if (validarDocente.stream().anyMatch(a -> a.getTelefono().equals(obj.getTelefono()))) {
+			salida.put("mensaje", Mensajes.MENSAJE_TELEFONO_YA_EXISTE + obj.getTelefono());
+		}
+		else if (validarDocente.stream().anyMatch(a -> a.getDni().equals(obj.getDni()))) {
 			salida.put("mensaje", Mensajes.MENSAJE_DNI_YA_EXISTE + obj.getDni());
 		} else {
 			Docente objSalida = doService.agregarDocente(obj);

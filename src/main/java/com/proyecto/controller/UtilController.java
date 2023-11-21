@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.entity.Grado;
 import com.proyecto.entity.Sexo;
-import com.proyecto.entity.TipoPago;
-import com.proyecto.entity.Turno;
+
 import com.proyecto.service.gradoService;
 import com.proyecto.service.sexoService;
-import com.proyecto.service.tipoPagoService;
-import com.proyecto.service.turnoService;
-import com.proyecto.utils.Utils;
+
 
 @RestController
 @RequestMapping("/url/util")
@@ -30,12 +27,7 @@ public class UtilController {
 	@Autowired
 	private sexoService seService;
 	
-	@Autowired
-	private turnoService tuService;
-	
-	@Autowired
-	private tipoPagoService tpService;
-	
+
 	@GetMapping("/listarGrado")
 	@ResponseBody
 	public List<Grado>listarGrado(){
@@ -52,19 +44,6 @@ public class UtilController {
 		
 	}
 	
-	@GetMapping("/listarTurno")
-	@ResponseBody
-	public List<Turno>listarTurno(){
-		return tuService.listarTodos();
-		
-	}
-	
-	@GetMapping("/listarTipoPago")
-	@ResponseBody
-	public List<TipoPago>listarTipoPago(){
-		return tpService.listarTodo();
-		
-	}
 	
 
 }

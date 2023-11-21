@@ -46,7 +46,7 @@ public class cursoController {
 		obj.setFechaRegistro(new Date());
 
 		if (validarCurso.stream()
-				.anyMatch(c -> c.getNombre().equals(obj.getNombre()) && c.getIdCurso() != obj.getIdCurso())) {
+				.anyMatch(c -> (c.getNombre().equals(obj.getNombre()) && c.getGrado().getIdGrado() == obj.getGrado().getIdGrado() )  && c.getIdCurso() != obj.getIdCurso())) {
 			salida.put("mensaje", Mensajes.MENSAJE_CURSONOMBRE_EXISTE);
 		} else {
 			Curso objSalida = cuService.agregarCurso(obj);

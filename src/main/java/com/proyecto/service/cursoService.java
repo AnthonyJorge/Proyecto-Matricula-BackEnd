@@ -17,4 +17,5 @@ public interface cursoService {
 	//consultar
 	
 	public abstract  List<Curso> consultaCurso(String nombre, int idGrado);
+	
 }

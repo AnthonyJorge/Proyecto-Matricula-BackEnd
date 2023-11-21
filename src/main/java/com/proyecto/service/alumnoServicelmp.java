@@ -3,6 +3,7 @@ package com.proyecto.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.Interface.alumnoRepository;
@@ -37,6 +38,11 @@ public class alumnoServicelmp implements alumnoService{
 	@Override
 	public List<Alumno> ConsultaAlumno(String nombre, String apellidoPa, String dni, int idSexo) {
 		return rpy.consultaDinamica(nombre, apellidoPa, dni, idSexo);
+	}
+
+	@Override
+	public List<Alumno> listaAlumnoFiltro(String filtro, Pageable ageable) {
+		return rpy.listaAlumno(filtro, ageable);
 	}
 
 

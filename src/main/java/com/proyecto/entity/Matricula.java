@@ -1,6 +1,7 @@
 package com.proyecto.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,34 +27,17 @@ public class Matricula {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMatricula;
 	private Date fechaRegistro;
-	private double precio;
-	private double descuento;
-	private double precioTotal;
-	private String tipoPago;
-	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name ="idCurso")
-	private Curso curso;
-	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name ="idDocente")
-	private Docente docente;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name ="idAlumno")
 	private Alumno alumno;
 	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name ="idTurno")
-	private Turno turno;
 	
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name ="idTipoPago")
-	private TipoPago tipopago;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "matricula")
+	private List<Matricula_Has_Docente> detallesMatricula;
 	
+	
+
 }

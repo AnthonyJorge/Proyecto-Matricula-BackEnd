@@ -6,15 +6,9 @@ import com.proyecto.entity.Matricula;
 
 public interface matriculaService {
 	
-	public abstract Matricula agregarMatricula(Matricula matricula);
-	
-	public abstract Matricula actualizarMatricula(Matricula matricula);
-	
-	public abstract void eliminarMatricula(int idMatricula);
+	public  Matricula agregarMatricula(Matricula obj);
 	
 	public abstract List<Matricula> listarTodo();
-	
-	//consultas
 	
 
 

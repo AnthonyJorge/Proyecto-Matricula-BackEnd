@@ -3,6 +3,7 @@ package com.proyecto.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.proyecto.Interface.cursoRepository;
@@ -39,5 +40,8 @@ public class cursoServicelmp implements cursoService{
 	public List<Curso> consultaCurso(String nombre, int idGrado) {
 		return rpy.consultaDinamica(nombre, idGrado);
 	}
+
+
+	
 
 }

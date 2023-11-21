@@ -2,7 +2,10 @@ package com.proyecto.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.proyecto.entity.Alumno;
+
 
 public interface alumnoService {
 	
@@ -18,5 +21,5 @@ public interface alumnoService {
 
 	public abstract List<Alumno> ConsultaAlumno(String nombre, String apellidoPa,String dni, int idSexo);
 
-
+	public abstract List<Alumno> listaAlumnoFiltro(String filtro, Pageable ageable) ;
 }
